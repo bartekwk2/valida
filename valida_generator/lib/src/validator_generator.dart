@@ -225,7 +225,7 @@ String _globalFunctionValidation(
   return '''
 [${validateFunctions.map((e) {
     return e.isStatic
-        ? '...${e.enclosingElement.name}.${e.name}(value),'
+        ? '...${e.enclosingElement3.name}.${e.name}(value),'
         : '...value.${e.name}(),';
   }).join()}
   ${annotationValue.customValidateName == null ? '' : '...${annotationValue.customValidateName}(value),'}
@@ -585,7 +585,7 @@ extension ConsumeSerdeType on DartObject {
         if (f == null) {
           return null;
         }
-        final enclosing = f.declaration.enclosingElement.name;
+        final enclosing = f.declaration.enclosingElement3.name;
         return '${enclosing == null ? '' : '$enclosing.'}${f.name}';
       },
       duration: () => this.getField('_duration')?.toIntValue(),
