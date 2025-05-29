@@ -110,7 +110,9 @@ class Validators with GenericValidator {
 }
 ''';
       try {
-        out = DartFormatter().format(out);
+        out =
+            DartFormatter(languageVersion: DartFormatter.latestLanguageVersion)
+                .format(out);
       } catch (_) {}
 
       await buildStep.writeAsString(_allFileOutput(buildStep), out);
@@ -132,12 +134,12 @@ class _WarningElementVisitor extends SimpleElementVisitor<void> {
 
   void visit(Element element) {
     if (const TypeChecker.fromRuntime(ValidaField).hasAnnotationOf(element) &&
-        element.enclosingElement != null &&
+        element.enclosingElement3 != null &&
         !const TypeChecker.fromRuntime(Valida)
-            .hasAnnotationOfExact(element.enclosingElement!)) {
+            .hasAnnotationOfExact(element.enclosingElement3!)) {
       print(
         'Element "${element}" has a `ValidaField` annotation,'
-        ' but it\'s enclosing element "${element.enclosingElement}"'
+        ' but it\'s enclosing element "${element.enclosingElement3}"'
         ' does not have a `Valida` annotation.'
         ' The field may not be validated.',
       );
